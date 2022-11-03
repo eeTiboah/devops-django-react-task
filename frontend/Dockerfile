@@ -5,11 +5,12 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm i
+ENV NODE_ENV production
+
+RUN npm i --production
 
 RUN npm run build
 
-ENV NODE_ENV production
 
 EXPOSE 3000
 
