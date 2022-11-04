@@ -5,7 +5,7 @@ services:
       build: ./api
       image: app-backend
       container_name: app-backend
-      command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+      command: bash -c "python manage.py makemigrations && python manage.py migrate  && python manage.py runserver 8000"
       ports:
         - 8000:8000
   frontend:
