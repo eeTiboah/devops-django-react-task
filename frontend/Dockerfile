@@ -7,7 +7,7 @@ COPY . .
 
 ENV NODE_ENV production
 
-RUN npm i --production
+RUN npm i
 
 RUN npm run build
 
@@ -18,11 +18,11 @@ CMD ["npx", "serve", "build"]
 
 FROM nginx:alpine
 
-# ENV NODE_ENV production
 
 COPY --from=builder /app/build /usr/share/nginx/html
 
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 

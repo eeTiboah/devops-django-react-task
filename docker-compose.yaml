@@ -1,15 +1,17 @@
 version: '3'
 
 services:
-  hng_backend:
+  backend:
       build: ./api
-      container_name: api
-      command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 8000"
+      image: app-backend
+      container_name: app-backend
+      command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
       ports:
         - 8000:8000
-  hng_frontend:
+  frontend:
       build: ./frontend
-      container_name: frontend
+      image: app-frontend
+      container_name: app-frontend
       ports:
-        - 3000:3000
+        - 3000:80
       
