@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
   backend-hng:
       build: ./api
       image: app-backend-hng
