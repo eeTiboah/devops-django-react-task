@@ -1,17 +1,31 @@
 version: '3'
 
 services:
-  backend:
+  reverse-proxy:
+      build: ./nginx
+      image: reverse_proxy_nginx
+      container_name: reverse_proxy_nginx
+      depends_on:
+        - frontend-hng
+        - backend-hng
+      volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      ports:
+        - 80:80
+
+  backend-hng:
       build: ./api
-      image: app-backend
-      container_name: app-backend
-      command: bash -c "python manage.py makemigrations && python manage.py migrate  && python manage.py runserver 8000"
+      image: app-backend-hng
+      container_name: app-backend-hng
+      command: bash -c "python manage.py makemigrations && python manage.py migrate  && python manage.py runserver 0.0.0.0:8000"
       ports:
         - 8000:8000
-  frontend:
+
+  frontend-hng:
       build: ./frontend
-      image: app-frontend
-      container_name: app-frontend
+      image: app-frontend-hng
+      container_name: app-frontend-hng
       ports:
         - 3000:80
+
       
