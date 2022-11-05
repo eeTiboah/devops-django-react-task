@@ -1,17 +1,6 @@
 version: '3'
 
 services:
-  reverse-proxy:
-      build: ./nginx
-      image: reverse_proxy_nginx
-      container_name: reverse_proxy_nginx
-      depends_on:
-        - frontend-hng
-        - backend-hng
-      volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      ports:
-        - 80:80
 
   backend-hng:
       build: ./api
